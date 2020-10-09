@@ -43,20 +43,21 @@ function addPagination(list) {
             <button type="button">${i}</button>
          </li>`);
    }
-   const firstLiItem = linkList.firstElementChild;
+
+   const firstLiItem = linkList.firstElementChild.firstElementChild;
    firstLiItem.classList.add('active');
 
    linkList.addEventListener('click', (e) => {
       if (e.target.tagName === 'BUTTON') {
-         // remove any .active classes from buttons, add .active to event target
-         firstLiItem.classList.remove('active');
-         e.target.classList.add('active');
-         console.log(linkList.children);
+         const linkListButtons = document.querySelectorAll('li button');
 
-         console.log(firstLiItem);
-         console.log(e.target);
+         for (let i = 0; i < linkListButtons.length; i++) {
+            const pageNumber = e.target.textContent;
+            linkListButtons[i].classList.remove('active');
+            e.target.classList.add('active');
+            showPage(data, pageNumber);
+         }
       }
-
    })
 }
 
