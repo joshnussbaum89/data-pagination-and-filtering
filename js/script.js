@@ -48,6 +48,7 @@ function addPagination(list) {
 
    linkList.addEventListener('click', (e) => {
       if (e.target.tagName === 'BUTTON') {
+         // remove any .active classes from buttons, add .active to event target
          firstLiItem.classList.remove('active');
          e.target.classList.add('active');
          console.log(linkList.children);
