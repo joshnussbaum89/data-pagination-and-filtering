@@ -93,7 +93,7 @@ function addSearchBar() {
       }
    });
 
-   searchButton.addEventListener('click', (event) => {
+   searchButton.addEventListener('click', () => {
       const inputValue = input.value.toLowerCase();
       let newStudentArr = [];
 
