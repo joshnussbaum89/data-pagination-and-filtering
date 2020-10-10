@@ -78,28 +78,32 @@ function addSearchBar() {
    const input = document.querySelector('#search');
    const searchButton = document.querySelector('.search-button');
 
-   input.addEventListener('keyup', () => {
-      const inputValueLowercase = input.value.toLowerCase();
-      const studentListName = document.querySelectorAll('.student-list h3');
-      const studentItem = document.querySelectorAll('.student-item');
+   input.addEventListener('keyup', (event) => {
+      const eventTargetValue = event.target.value.toLowerCase();
+      let newStudentArr = [];
 
-      for (let i = 0; i < studentListName.length; i++) {
-         studentItem[i].classList.remove('hide');
-         if (!studentListName[i].textContent.toLowerCase().includes(inputValueLowercase)) {
-            studentItem[i].classList.add('hide');
+      for (let i = 0; i < data.length; i++) {
+         const studentName = `${data[i].name.title.toLowerCase()} ${data[i].name.first.toLowerCase()} ${data[i].name.last.toLowerCase()}`;
+
+         if (studentName.includes(eventTargetValue)) {
+            newStudentArr.push(data[i]);
+            showPage(newStudentArr, 1);
+            addPagination(newStudentArr);
          }
       }
    });
 
-   searchButton.addEventListener('click', () => {
-      const inputValueLowercase = input.value.toLowerCase();
-      const studentListName = document.querySelectorAll('.student-list h3');
-      const studentItem = document.querySelectorAll('.student-item');
+   searchButton.addEventListener('click', (event) => {
+      const inputValue = input.value.toLowerCase();
+      let newStudentArr = [];
 
-      for (let i = 0; i < studentListName.length; i++) {
-         studentItem[i].classList.remove('hide');
-         if (!studentListName[i].textContent.toLowerCase().includes(inputValueLowercase)) {
-            studentItem[i].classList.add('hide');
+      for (let i = 0; i < data.length; i++) {
+         const studentName = `${data[i].name.title.toLowerCase()} ${data[i].name.first.toLowerCase()} ${data[i].name.last.toLowerCase()}`;
+
+         if (studentName.includes(inputValue)) {
+            newStudentArr.push(data[i]);
+            showPage(newStudentArr, 1);
+            addPagination(newStudentArr);
          }
       }
    });
