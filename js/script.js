@@ -14,12 +14,12 @@ function showPage(list, page) {
          studentList.insertAdjacentHTML("beforeend",
             `<li class="student-item cf">
                <div class="student-details">
-                  <img class="avatar" src=${data[i].picture.large} alt="Profile Picture">
-                  <h3>${data[i].name.title} ${data[i].name.first} ${data[i].name.last}</h3>
-                  <span class="email">${data[i].email}</span>
+                  <img class="avatar" src=${list[i].picture.large} alt="Profile Picture">
+                  <h3>${list[i].name.title} ${list[i].name.first} ${list[i].name.last}</h3>
+                  <span class="email">${list[i].email}</span>
                </div>
                <div class="joined-details">
-                  <span class="date">Joined ${data[i].registered.date}</span>
+                  <span class="date">Joined ${list[i].registered.date}</span>
                </div>
             </li>`);
       }
@@ -43,25 +43,71 @@ function addPagination(list) {
             <button type="button">${i}</button>
          </li>`);
    }
-
    const firstLiItem = linkList.firstElementChild.firstElementChild;
    firstLiItem.classList.add('active');
 
    linkList.addEventListener('click', (e) => {
       if (e.target.tagName === 'BUTTON') {
          const linkListButtons = document.querySelectorAll('li button');
+         const pageNumber = e.target.textContent;
 
          for (let i = 0; i < linkListButtons.length; i++) {
-            const pageNumber = e.target.textContent;
             linkListButtons[i].classList.remove('active');
             e.target.classList.add('active');
             showPage(data, pageNumber);
          }
       }
-   })
+
+   });
+}
+
+/*
+Create the `addSearchBar` function
+This function will add a search bar to the page and dynamically search students 
+*/
+
+function addSearchBar() {
+
+   const header = document.querySelector('.header');
+   header.insertAdjacentHTML('beforeend',
+      `<label for="search" class="student-search">
+         <input id="search" placeholder="Search by name...">
+         <button class="search-button" type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+       </label>`);
+
+   const input = document.querySelector('#search');
+   const searchButton = document.querySelector('.search-button');
+
+   input.addEventListener('keyup', () => {
+      const inputValueLowercase = input.value.toLowerCase();
+      const studentListName = document.querySelectorAll('.student-list h3');
+      const studentItem = document.querySelectorAll('.student-item');
+
+      for (let i = 0; i < studentListName.length; i++) {
+         studentItem[i].classList.remove('hide');
+         if (!studentListName[i].textContent.toLowerCase().includes(inputValueLowercase)) {
+            studentItem[i].classList.add('hide');
+         }
+      }
+   });
+
+   searchButton.addEventListener('click', () => {
+      const inputValueLowercase = input.value.toLowerCase();
+      const studentListName = document.querySelectorAll('.student-list h3');
+      const studentItem = document.querySelectorAll('.student-item');
+
+      for (let i = 0; i < studentListName.length; i++) {
+         studentItem[i].classList.remove('hide');
+         if (!studentListName[i].textContent.toLowerCase().includes(inputValueLowercase)) {
+            studentItem[i].classList.add('hide');
+         }
+      }
+   });
+
 }
 
 // Call functions
 
 showPage(data, 1);
 addPagination(data);
+addSearchBar();
