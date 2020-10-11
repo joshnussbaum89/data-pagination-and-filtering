@@ -184,14 +184,6 @@ header h2 {
 	margin-bottom: 15px;
 }
 
-.show {
-  display: block;
-}
-
-.hide {
-  display: none;
-}
-
 
 
 @media screen and (min-width: 700px) {

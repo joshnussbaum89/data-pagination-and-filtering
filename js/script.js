@@ -91,6 +91,11 @@ function addSearchBar() {
             addPagination(newStudentArr);
          }
       }
+      // if search doesn't return a result on keyup
+      if (newStudentArr.length === 0) {
+         error(eventTargetValue);
+      }
+
    });
 
    searchButton.addEventListener('click', () => {
@@ -106,12 +111,23 @@ function addSearchBar() {
             addPagination(newStudentArr);
          }
       }
+      // if search doesn't return a result on click
+      if (newStudentArr.length === 0) {
+         error(inputValue);
+      }
    });
 
 }
 
-// Call functions
+// display error
+function error(input) {
+   const studentList = document.querySelector('.student-list');
+   studentList.innerHTML = `<h1>${input} is not valid name. PLease try another name!</h1>`;
+   studentList.style.color = 'red';
+   studentList.style.textAlign = 'center';
+}
 
+// Call functions
 showPage(data, 1);
 addPagination(data);
 addSearchBar();
