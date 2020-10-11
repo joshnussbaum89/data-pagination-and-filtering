@@ -54,7 +54,7 @@ function addPagination(list) {
          </li>`);
    }
 
-   if (linkList > 0) {
+   if (linkList.firstElementChild) {
       const firstLiItem = linkList.firstElementChild.firstElementChild;
       firstLiItem.classList.add('active');
    }
