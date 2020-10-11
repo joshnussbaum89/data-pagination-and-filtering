@@ -111,7 +111,8 @@ function addSearchBar() {
       }
 
       if (newStudentArr.length === 0) {
-         return error(eventTargetValue);
+         error(eventTargetValue);
+         addPagination(newStudentArr);
       }
 
    });
@@ -131,7 +132,8 @@ function addSearchBar() {
       }
 
       if (newStudentArr.length === 0) {
-         return error(inputValue);
+         error(inputValue);
+         addPagination(newStudentArr);
       }
    });
 
