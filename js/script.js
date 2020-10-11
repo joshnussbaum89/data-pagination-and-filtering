@@ -1,9 +1,11 @@
 /*
 Create the `showPage` function
-This function will create and insert/append the elements needed to display a "page" of nine students
+This function will create and insert/append the elements needed to display a "page" of nine students.
 */
 
+// Page is 1 by default and list is the data array of students.
 function showPage(list, page) {
+
    const startIndex = (page * 9) - 9;
    const endIndex = page * 9;
    const studentList = document.querySelector('.student-list');
@@ -12,7 +14,7 @@ function showPage(list, page) {
    for (let i = 0; i < list.length; i++) {
       if (i >= startIndex && i < endIndex) {
          studentList.insertAdjacentHTML("beforeend",
-            `<li class="student-item cf">
+            `<li class="student-item cf" title="${list[i].name.title} ${list[i].name.first} ${list[i].name.last}">
                <div class="student-details">
                   <img class="avatar" src=${list[i].picture.large} alt="Profile Picture">
                   <h3>${list[i].name.title} ${list[i].name.first} ${list[i].name.last}</h3>
@@ -25,14 +27,22 @@ function showPage(list, page) {
       }
    }
    return studentList;
+
 }
 
 /*
 Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
+This function will create and insert/append the elements needed for the pagination buttons.
+*/
+
+/* 
+-- List is the data array of students
+-- Divide the length of the array by 9 and dynamically add the necessary amount of buttons based on how many results are returned 
+-- A click event listener adds and removes an .active class based on where the user clicks.
 */
 
 function addPagination(list) {
+
    const numOfPaginationBtns = Math.ceil(list.length / 9);
    const linkList = document.querySelector('.link-list');
    linkList.innerHTML = '';
@@ -54,16 +64,24 @@ function addPagination(list) {
          for (let i = 0; i < linkListButtons.length; i++) {
             linkListButtons[i].classList.remove('active');
             e.target.classList.add('active');
-            showPage(data, pageNumber);
+            showPage(list, pageNumber);
          }
       }
-
    });
+
 }
 
 /*
 Create the `addSearchBar` function
-This function will add a search bar to the page and dynamically search students 
+This function will add a search bar to the page and dynamically search students. 
+*/
+
+/*
+-- Insert searchbar and icon to DOM
+-- Search for students in real time as user types
+-- If search doesn't return a result on keyup, throw an error message
+-- Search for students when search icon is clicked.  This is benificial if a student has been copy/pasted
+-- if search doesn't return a result on click, throw an error message
 */
 
 function addSearchBar() {
@@ -91,9 +109,9 @@ function addSearchBar() {
             addPagination(newStudentArr);
          }
       }
-      // if search doesn't return a result on keyup
+
       if (newStudentArr.length === 0) {
-         error(eventTargetValue);
+         return error(eventTargetValue);
       }
 
    });
@@ -111,9 +129,9 @@ function addSearchBar() {
             addPagination(newStudentArr);
          }
       }
-      // if search doesn't return a result on click
+
       if (newStudentArr.length === 0) {
-         error(inputValue);
+         return error(inputValue);
       }
    });
 

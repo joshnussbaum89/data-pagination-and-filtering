@@ -92,14 +92,17 @@ header h2 {
   flex-direction: column;
   justify-content: space-between;
   padding: 2.5em;
-  background-color: #fff;
+  background-color: rgb(229, 238, 250);
+  border: 1px solid grey;
   border-radius: 2px;
-  -webkit-transition: box-shadow .3s ease;
-  transition: box-shadow .3s ease;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
 }
 
 .student-item:hover {
   box-shadow: 0 0 6px grey;
+  background-color: white;
+  border: 1px solid white;
   cursor: pointer;
 }
 
