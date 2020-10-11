@@ -53,8 +53,11 @@ function addPagination(list) {
             <button type="button">${i}</button>
          </li>`);
    }
-   const firstLiItem = linkList.firstElementChild.firstElementChild;
-   firstLiItem.classList.add('active');
+
+   if (linkList > 0) {
+      const firstLiItem = linkList.firstElementChild.firstElementChild;
+      firstLiItem.classList.add('active');
+   }
 
    linkList.addEventListener('click', (e) => {
       if (e.target.tagName === 'BUTTON') {
