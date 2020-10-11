@@ -122,7 +122,7 @@ function addSearchBar() {
 // display error
 function error(input) {
    const studentList = document.querySelector('.student-list');
-   studentList.innerHTML = `<h1>${input} is not valid name. PLease try another name!</h1>`;
+   studentList.innerHTML = `<h1>${input} is not valid name. Please try another name!</h1>`;
    studentList.style.color = 'red';
    studentList.style.textAlign = 'center';
 }

@@ -1,13 +1,17 @@
 /* New FSJS project 2 - List Pagination and Filter - v2 - Data version */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;800&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;800&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Vollkorn+SC&display=swap');
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Chelsea Market', cursive;
+  font-family: 'Vollkorn SC', serif;
 }
 
 body {
-	font-family: 'Montserrat', Helvetica, sans-serif;
+	font-family: 'Chelsea Market', cursive;
+  font-family: 'Vollkorn SC', serif;
 	background-color: rgb(229, 238, 250);
   transition: 0.4s;
 }
@@ -35,9 +39,8 @@ header {
 }
 
 header h2 {
-  font-size: 36px;
+  font-size: 2em;
   text-transform: uppercase;
-  font-weight: 800;
   color: #4a5568;
   letter-spacing: 2px;
 	margin-bottom: 25px;
@@ -77,8 +80,6 @@ header h2 {
   width: 25px;
 }
 
-
-
 .student-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -95,6 +96,11 @@ header h2 {
   border-radius: 2px;
   -webkit-transition: box-shadow .3s ease;
   transition: box-shadow .3s ease;
+}
+
+.student-item:hover {
+  box-shadow: 0 0 6px grey;
+  cursor: pointer;
 }
 
 .avatar {
@@ -123,6 +129,7 @@ header h2 {
   color: #1e90ff;
 }
 
+
 .student-item .email {
 	font-weight: 600;
   color: #6d778a;
@@ -140,8 +147,6 @@ header h2 {
   border-top: solid 1px #dcdcdc;
   margin-top: 1.1em;
 }
-
-
 
 .pagination {
   margin: 30px 0 60px;
